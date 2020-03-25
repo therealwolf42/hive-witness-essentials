@@ -1,4 +1,4 @@
-# Witness Essentials - Monorepo
+# Hive Witness Essentials
 
 Includes Watcher, Pricefeed, Remote, CLI inside `essentials`
 
