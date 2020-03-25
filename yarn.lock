@@ -2964,6 +2964,19 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
+witness-essentials-package@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/witness-essentials-package/-/witness-essentials-package-2.0.0.tgz#68e216612fb8cc56ae32b0dcab5c2ce308e3b9c7"
+  integrity sha512-e+V7bFJQIcA9LVaije11HeN5EZz2iRiMFonnfCfkV3ZwcoLuDvY00wVGcwKJBLDjZ/MZRZbEXzfmWVol1+AKKg==
+  dependencies:
+    "@hivechain/dhive" "^0.13.0"
+    crypto-js "^3.1.9-1"
+    nodemailer "^4.6.8"
+    steem-js-witness-fix "^0.7.1"
+    superagent "^3.8.2"
+    telegraf "^3.23.1"
+    twilio "^3.19.2"
+
 word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"

@@ -12,9 +12,9 @@
     },
     {
       "path": "./watcher"
-    },
-    {
-      "path": "./__internal__Util"
     }
+    /* {
+      "path": "./__internal__Util"
+    }*/
   ]
 }

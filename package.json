@@ -17,7 +17,8 @@
       "essentials/*"
     ],
     "nohoist": [
-      "*/**"
+      "*/**",
+      "__internal__Util"
     ]
   },
   "husky": {
