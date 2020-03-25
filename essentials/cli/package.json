@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "@witness-essentials/cli",
+  "version": "1.0.0",
+  "description": "CLI commands for Hive Witnesses",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsc",
+    "update": "ts-node src/commands/update.ts",
+    "enable": "ts-node src/commands/enable.ts",
+    "disable": "ts-node src/commands/disable.ts",
+    "rotate": "ts-node src/commands/rotate.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/witness-essentials/cli.git"
+  },
+  "author": "therealwolf42",
+  "license": "MIT",
+  "dependencies": {
+    "@hivechain/dhive": "^0.13.0",
+    "convict": "^4.3.2",
+    "dotenv": "^5.0.0",
+    "readline-sync": "^1.4.9",
+    "steem": "^0.7.1",
+    "witness-essentials-package": "^1.0.6"
+  },
+  "bugs": {
+    "url": "https://github.com/witness-essentials/cli/issues"
+  },
+  "homepage": "https://github.com/witness-essentials/cli#readme"
+}

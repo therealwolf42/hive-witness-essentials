@@ -1,0 +1,21 @@
+{
+  "name": "witness-essentials-util",
+  "version": "1.0.0",
+  "description": "Basic methods internally used for Witness Essentials",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "therealwolf42",
+  "license": "MIT",
+  "dependencies": {
+    "@hivechain/dhive": "^0.13.0",
+    "crypto-js": "^3.1.9-1",
+    "nodemailer": "^4.6.8",
+    "steem-js-witness-fix": "^0.7.1",
+    "superagent": "^3.8.2",
+    "telegraf": "^3.23.1",
+    "twilio": "^3.19.2"
+  }
+}

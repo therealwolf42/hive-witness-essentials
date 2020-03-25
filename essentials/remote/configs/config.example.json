@@ -1,0 +1,19 @@
+{
+  "RPC_NODES": [
+    "https://anyx.io",
+    "https://api.hivekings.com",
+    "https://api.hive.blog",
+    "https://api.openhive.network"
+  ],
+  "WITNESS": "",
+  "ACTIVE_KEY": "",
+  "SIGNING_KEYS": [
+    {
+      "public": "",
+      "private": ""
+    }
+  ],
+  "TELEGRAM_BOT_TOKEN": "",
+  "TELEGRAM_PASSWORD": "",
+  "TELEGRAM_USER_ID": ""
+}

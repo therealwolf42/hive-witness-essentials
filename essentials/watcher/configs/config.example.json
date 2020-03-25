@@ -1,0 +1,41 @@
+{
+  "TEST_MODE": false,
+  "RPC_NODES": [
+    "https://api.hivekings.com",
+    "https://api.hive.blog",
+    "https://anyx.io",
+    "https://api.openhive.network"
+  ],
+  "WITNESS": "",
+  "ACTIVE_KEY": "",
+  "SIGNING_KEYS": [
+    {
+      "public": "",
+      "private": ""
+    }
+  ],
+  "INTERVAL": 10,
+  "MISSED_BLOCKS_THRESHOLD": 1,
+  "ROTATE_KEYS": true,
+  "ROTATE_ROUNDS": 1,
+  "ALERT_AFTER_EVERY_MISSED": true,
+  "SMS": {
+    "NEXMO": false,
+    "TWILIO": false,
+    "API_KEY": "",
+    "API_SECRET": "",
+    "PHONE_NUMBER": "",
+    "FROM_NUMBER": "TWILIO ONLY"
+  },
+  "EMAIL": {
+    "ENABLED": false,
+    "GOOGLE_MAIL_ACCOUNT": "",
+    "GOOGLE_MAIL_PASSWORD": "",
+    "EMAIL_RECEIVER": ""
+  },
+  "TELEGRAM": {
+    "ENABLED": false,
+    "BOT_TOKEN": "",
+    "USER_ID": ""
+  }
+}

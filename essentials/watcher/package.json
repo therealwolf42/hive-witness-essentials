@@ -1,0 +1,36 @@
+{
+  "name": "witness-essentials-watcher",
+  "version": "1.1.0",
+  "description": "Watcher alerts you in case of missed blocks and changes your signing key automatically",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node-dev --tree-kill --no-notify --respawn --transpile-only src/index.ts",
+    "test": "ts-node src/test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/witness-essentials/watcher.git"
+  },
+  "author": "therealwolf42",
+  "license": "MIT",
+  "dependencies": {
+    "@hivechain/dhive": "^0.13.0",
+    "@types/node": "^10.5.1",
+    "convict": "^4.3.2",
+    "dotenv": "^5.0.0",
+    "moment": "^2.23.0",
+    "readline-sync": "^1.4.9",
+    "steem": "^0.7.1",
+    "witness-essentials-package": "^1.4.1"
+  },
+  "bugs": {
+    "url": "https://github.com/witness-essentials/watcher/issues"
+  },
+  "homepage": "https://github.com/witness-essentials/watcher#readme",
+  "devDependencies": {
+    "ts-node": "^8.8.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.5.3"
+  }
+}

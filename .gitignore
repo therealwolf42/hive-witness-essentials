@@ -1,0 +1,50 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+tmp
+package-lock.json
+
+coverage
+coverage/**
+
+# API keys and secrets
+env
+.env
+.npmrc
+
+# Dependency directory
+node_modules
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+essentials/**/dist/**/*
+essentials/**/tsconfig.tsbuildinfo
+essentials/**/*/tsconfig.tsbuildinfo
+dist
+tsconfig.tsbuildinfo
+**/tsconfig.tsbuildinfo
+
+
+# !!! SENSITIVE - DON'T REMOVE!! EVER!!
+# API keys and secrets
+.env
+config.json
+configs/config.json
+configs/config.pricefeed.json

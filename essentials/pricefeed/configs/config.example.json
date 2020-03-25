@@ -1,0 +1,29 @@
+{
+  "RPC_NODES": [
+    "https://anyx.io",
+    "https://api.hivekings.com",
+    "https://api.hive.blog",
+    "https://api.openhive.network"
+  ],
+  "WITNESS": "",
+  "ACTIVE_KEY": "",
+  "SIGNING_KEYS": [
+    {
+      "public": "",
+      "private": ""
+    }
+  ],
+  "EXCHANGES": {
+    "bittrex": true,
+    "binance": true,
+    "huobi": true,
+    "upbit": true
+  },
+  "CONVERT_USDT_TO_USD": true,
+  "EXCHANGES_USDT": {
+    "bittrex": true,
+    "kraken": true
+  },
+  "PEG": 1,
+  "INTERVAL": 60
+}
