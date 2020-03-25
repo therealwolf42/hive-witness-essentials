@@ -1,6 +1,6 @@
 # Watcher
 
-Script for Steem Witnesses to watch witness for missed blocks, failover towards backup-nodes & alert via multiple services.
+Script for Hive Witnesses to watch witness for missed blocks, failover towards backup-nodes & alert via multiple services.
 
 - Multiple alert options available (TELEGRAM, SMS <NEXMO, TWILIO>, EMAIL)
 - Transaction signing either via private signing-key or private active-key
