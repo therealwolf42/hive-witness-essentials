@@ -1,6 +1,6 @@
 import * as essentials from 'witness-essentials-package'
 import * as dsteem from '@hivechain/dhive'
-const _g = require('./_g')
+import _g = require('./_g')
 
 interface Options {
   node?: string
@@ -8,7 +8,7 @@ interface Options {
   set_properties?: boolean
 }
 
-export let publish_feed = async (
+export const publish_feed = async (
   price: number,
   key: string,
   options: Options = {retries: 0},
@@ -17,17 +17,18 @@ export let publish_feed = async (
     if (!options.retries) options.retries = 0
     const PEG = _g.config.PEG ? _g.config.PEG : 1
 
-    let base: dsteem.Asset = dsteem.Asset.fromString(`${price.toFixed(3)} HBD`)
-    let quote: dsteem.Asset = dsteem.Asset.fromString(
+    const base: dsteem.Asset = dsteem.Asset.fromString(
+      `${price.toFixed(3)} HBD`,
+    )
+    const quote: dsteem.Asset = dsteem.Asset.fromString(
       (1 / PEG).toFixed(3) + ' HIVE',
     )
 
-    let exchange_rate: dsteem.PriceType = new dsteem.Price(base, quote)
+    const exchange_rate: dsteem.PriceType = new dsteem.Price(base, quote)
 
-    let props: any = {sbd_exchange_rate: exchange_rate}
-    let result
+    const props: any = {sbd_exchange_rate: exchange_rate}
     if (options.set_properties) {
-      result = await essentials.witness_set_properties(
+      await essentials.witness_set_properties(
         _g.client,
         _g.config.WITNESS,
         _g.CURRENT_SIGNING_KEY,
@@ -35,11 +36,11 @@ export let publish_feed = async (
         key,
       )
     } else {
-      let op: dsteem.FeedPublishOperation = [
+      const op: dsteem.FeedPublishOperation = [
         'feed_publish',
         {exchange_rate, publisher: _g.config.WITNESS},
       ]
-      result = await _g.client.broadcast.sendOperations(
+      await _g.client.broadcast.sendOperations(
         [op],
         dsteem.PrivateKey.from(key),
       )
@@ -64,7 +65,7 @@ export let publish_feed = async (
   }
 }
 
-export let get_witness = async (options: Options = {retries: 0}) => {
+export const get_witness = async (options: Options = {retries: 0}) => {
   try {
     if (!options.retries) options.retries = 0
 
@@ -72,7 +73,7 @@ export let get_witness = async (options: Options = {retries: 0}) => {
     if (options.node)
       client = new dsteem.Client(options.node, {timeout: 8 * 1000})
 
-    let witness = await essentials.get_witness_by_account(
+    const witness = await essentials.get_witness_by_account(
       client,
       _g.config.WITNESS,
     )
@@ -91,12 +92,12 @@ export let get_witness = async (options: Options = {retries: 0}) => {
   }
 }
 
-export let calculate_usd_price = async (prices: Array<number>) => {
+export const calculate_usd_price = async (prices: Array<number>) => {
   try {
     let length = 0
     let price = 1
     let sum = 0
-    for (let x of prices) {
+    for (const x of prices) {
       if (x && x > 0) {
         length++
         sum += x
@@ -112,8 +113,8 @@ export let calculate_usd_price = async (prices: Array<number>) => {
 
 // Convert exchanges object for console display
 export const get_exchanges_for_display = (exchanges, active) => {
-  let list = []
-  for (let key in exchanges) {
+  const list = []
+  for (const key in exchanges) {
     if (exchanges[key] === active) {
       list.push(key)
     }
@@ -121,7 +122,7 @@ export const get_exchanges_for_display = (exchanges, active) => {
   return list
 }
 
-export let failover = async () => {
+export const failover = async () => {
   _g.current_node = essentials.failover_node(
     _g.config.RPC_NODES,
     _g.current_node,

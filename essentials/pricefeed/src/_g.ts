@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import * as dsteem from '@hivechain/dhive'
 
 export const NULL_KEY = 'STM1111111111111111111111111111111114T1Anm'

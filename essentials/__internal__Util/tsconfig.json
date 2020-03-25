@@ -10,15 +10,8 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "skipLibCheck": true,
-    "lib": [
-      "es7",
-      "esnext",
-      "dom"
-    ]
+    "esModuleInterop": true,
+    "lib": ["es7", "esnext", "dom"]
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/node_modules/*"
-  ]
+  "exclude": ["node_modules", "dist", "**/node_modules/*"]
 }

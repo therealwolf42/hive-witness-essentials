@@ -8,21 +8,13 @@
     "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --tree-kill --no-notify --respawn --transpile-only src/index.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/witness-essentials/pricefeed.git"
-  },
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
     "@hivechain/dhive": "^0.13.0",
-    "witness-essentials-package": "^1.4.1",
     "axios": "^0.18.1",
     "convict": "^4.3.2",
-    "dotenv": "^5.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/witness-essentials/pricefeed/issues"
-  },
-  "homepage": "https://github.com/witness-essentials/pricefeed#readme"
+    "dotenv": "^5.0.0",
+    "witness-essentials-package": "^2.0.0"
+  }
 }

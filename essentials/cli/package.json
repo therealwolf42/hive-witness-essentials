@@ -11,10 +11,6 @@
     "disable": "ts-node src/commands/disable.ts",
     "rotate": "ts-node src/commands/rotate.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/witness-essentials/cli.git"
-  },
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
@@ -23,10 +19,6 @@
     "dotenv": "^5.0.0",
     "readline-sync": "^1.4.9",
     "steem": "^0.7.1",
-    "witness-essentials-package": "^1.0.6"
-  },
-  "bugs": {
-    "url": "https://github.com/witness-essentials/cli/issues"
-  },
-  "homepage": "https://github.com/witness-essentials/cli#readme"
+    "witness-essentials-package": "^2.0.0"
+  }
 }

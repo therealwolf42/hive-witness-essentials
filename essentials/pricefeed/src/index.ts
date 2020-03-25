@@ -1,9 +1,7 @@
 require('dotenv').config()
-import * as dhive from '@hivechain/dhive'
 import * as essentials from 'witness-essentials-package'
 
-const _g = require('./_g')
-import {client} from './_g'
+import _g = require('./_g')
 
 import {
   bittrex_price,
@@ -20,7 +18,7 @@ import {
 let set_properties = false
 let transaction_signing_key: any = ''
 
-let start = async () => {
+const start = async () => {
   try {
     const active_exchanges = get_exchanges_for_display(
       _g.config.EXCHANGES,
@@ -69,11 +67,11 @@ let start = async () => {
   }
 }
 
-let main = async () => {
+const main = async () => {
   try {
     while (true) {
       _g.usd_lines = _g.log_lines = ''
-      let res = await get_witness()
+      const res = await get_witness()
       if (!res.signing_key) continue
       _g.CURRENT_SIGNING_KEY = res.signing_key
 
@@ -100,7 +98,7 @@ let main = async () => {
         set_properties = transaction_signing_key !== _g.config.ACTIVE_KEY
       }
 
-      let result = await update_pricefeed()
+      const result = await update_pricefeed()
       if (!result) essentials.log('Something went wrong. Retrying in 10 sec.')
       await essentials.timeout(result ? _g.config.INTERVAL * 60 : 10)
     }
@@ -110,7 +108,7 @@ let main = async () => {
   }
 }
 
-let update_pricefeed = async () => {
+const update_pricefeed = async () => {
   try {
     let promises = []
 
@@ -120,10 +118,10 @@ let update_pricefeed = async () => {
     if (_g.config.EXCHANGES.huobi) promises.push(huobi_price())
     if (_g.config.EXCHANGES.upbit) promises.push(upbit_price())*/
 
-    let x = await Promise.all(promises)
-    let prices = []
+    const x = await Promise.all(promises)
+    const prices = []
 
-    for (let p of x) {
+    for (const p of x) {
       if (p && p > 0 && !isNaN(p)) {
         prices.push(p)
       }
@@ -141,7 +139,7 @@ let update_pricefeed = async () => {
       if (_g.config.EXCHANGES_USDT.kraken) promises.push(kraken_usd_price())
 
       if (promises.length > 0) {
-        let usd_price = await calculate_usd_price(await Promise.all(promises))
+        const usd_price = await calculate_usd_price(await Promise.all(promises))
         essentials.log(
           `Exchanges (USDT): ${_g.usd_lines.substring(
             0,
@@ -166,16 +164,6 @@ let update_pricefeed = async () => {
   } catch (e) {
     console.error('update_pricefeed', e)
     return false
-  }
-}
-
-let check_env = async () => {
-  try {
-    dhive.PrivateKey.from(_g.config.ACTIVE_KEY)
-  } catch (error) {
-    essentials.log(`Missing Active key in .env. Exiting in 5 seconds.`)
-    await essentials.timeout(5)
-    process.exit(-1)
   }
 }
 

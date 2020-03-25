@@ -1,10 +1,9 @@
 import axios from 'axios'
-import {log} from 'witness-essentials-package'
 const httpClient = axios.create()
 httpClient.defaults.timeout = 5000
-const _g = require('./_g')
+import _g = require('./_g')
 
-export let bittrex_price = async () => {
+export const bittrex_price = async () => {
   try {
     let BTC_USD = (
       await httpClient.get(
@@ -95,14 +94,14 @@ export let upbit_price = async () => {
   }
 }*/
 
-export let bittrex_usd_price = async () => {
+export const bittrex_usd_price = async () => {
   try {
-    let data = (
+    const data = (
       await httpClient.get(
         'https://bittrex.com/api/v1.1/public/getticker?market=usd-usdt',
       )
     ).data.result
-    let price = parseFloat(data.Last)
+    const price = parseFloat(data.Last)
     _g.usd_lines += `Bittrex: ${price.toFixed(3)}, `
     return price
   } catch (error) {
@@ -111,15 +110,15 @@ export let bittrex_usd_price = async () => {
   }
 }
 
-export let kraken_usd_price = async () => {
+export const kraken_usd_price = async () => {
   try {
-    let data = (
+    const data = (
       await httpClient.get(
         'https://api.kraken.com/0/public/Ticker?pair=USDTUSD',
       )
     ).data.result.USDTZUSD
 
-    let price = parseFloat(data.c[0])
+    const price = parseFloat(data.c[0])
 
     _g.usd_lines += `Kraken: ${price.toFixed(3)}, `
     return price

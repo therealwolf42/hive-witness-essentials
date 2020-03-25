@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const convict = require('convict')
 
-let config = convict({
+const config = convict({
   RPC_NODES: {
     doc: 'Array of RPC-Nodes',
     format: '*',
