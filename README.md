@@ -6,6 +6,22 @@ Docker support:
 
 - Watcher, Pricefeed, Remote
 
+```
+git clone git@github.com:therealwolf42/hive-witness-essentials.git
+cd essentials/{watcher,pricefeed,remote} # select one!
+
+# script needs proper rights
+chmod +x run.sh
+
+# optional if docker not yet installed
+./run.sh install_docker
+
+# Let's get it on
+./run.sh build && ./run.sh restart && ./run.sh logs
+
+To get a list of possible commands, use: ./run.sh help
+```
+
 Yarn/NPM Only:
 
 - CLI
