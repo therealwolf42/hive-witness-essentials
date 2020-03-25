@@ -8,13 +8,13 @@ Script for Steem Witnesses to watch witness for missed blocks, failover towards 
 - Rotation between keys supported
 - Robust error handling
 
-
 ## Docker Installation (Recommended)
+
 It is recommended to use Docker. (Testing is currently not supported via docker)
 
 ```
-git clone https://github.com/witness-essentials/watcher.git
-cd watcher
+git clone git@github.com:therealwolf42/hive-witness-essentials.git
+cd essentials/watcher
 chmod +x run.sh
 ./run.sh install_docker
 ./run.sh build
@@ -28,6 +28,7 @@ To get a list of possible commands, use: `./run.sh help`
 However, you can also run node manually, with PM2 or your favourite program.
 
 #### Requirement: Node >= 8
+
 ```
 sudo apt update
 sudo apt install -y curl software-properties-common gnupg build-essential libssl-dev
@@ -37,6 +38,7 @@ sudo npm i npm@latest -g
 ```
 
 #### 1.) Clone Repository and install packages
+
 ```
 git clone https://github.com/witness-essentials/watcher.git
 cd watcher
@@ -44,6 +46,7 @@ npm i # or yarn
 ```
 
 #### 2.) Edit your Config
+
 ```
 cp configs/config.example.json configs/config.json
 nano configs/config.json
@@ -65,6 +68,7 @@ nano configs/config.json
 ```
 
 - SMS
+
   - NEXMO: Use NEXMO as SMS alert service
   - TWILIO: USE TWILIO as SMS alert service
   - API_KEY: NEXMO or TWILIO API KEY
@@ -73,6 +77,7 @@ nano configs/config.json
   - FROM_NUMBER: Only for TWILIO
 
 - EMAIL
+
   - ENABLED: Should email alert be enabled
   - GOOGLE_MAIL_ACCOUNT: Authentication for Email sending
   - GOOGLE_MAIL_PASSWORD: Authentication for Email sending
@@ -81,7 +86,7 @@ nano configs/config.json
 - TELEGRAM
   - ENABLED: Should telegram alert be enabled
   - BOT_TOKEN: The token you'll get from botfather
-  - USER_ID: You'll get the ID once you've created your bot and pressed on start or entered /help  
+  - USER_ID: You'll get the ID once you've created your bot and pressed on start or entered /help
 
 To get the TELEGRAM data, follow this guide: https://core.telegram.org/bots#6-botfather
 
@@ -90,20 +95,22 @@ To get the TELEGRAM data, follow this guide: https://core.telegram.org/bots#6-bo
 ## Start
 
 Option 1: NPM (no background)
+
 ```
-npm start
+yarn start
 ```
 
 Option 2: PM2 (background)
-```
-sudo npm install pm2 -g # if you haven't installed it yet
 
-pm2 start npm --name=watcher -- start
-pm2 save
+```
+yarn global add pm2 # if you haven't installed it yet
+
+pm2 start ecosystem.config.js --env production # or --env development
 pm2 logs watcher
 ```
 
 Option 3: Docker (background)
+
 ```
 ./run.sh start
 ./run.sh logs

@@ -7,8 +7,8 @@ Command-line interface commands for witnesses to quickly update signings-keys, p
 1.) Clone Repository and install packages
 
 ```
-git clone https://github.com/witness-essentials/cli.git
-cd cli
+git clone git@github.com:therealwolf42/hive-witness-essentials.git
+cd essentials/cli
 yarn
 ```
 

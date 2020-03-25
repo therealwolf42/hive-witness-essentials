@@ -1,21 +1,21 @@
 # Pricefeed
 
-Script for Hive Witnesses to publish their pricefeed. (info below will be updated soon)
+Script for Hive Witnesses to publish their pricefeed.
 
-- 5 major exchanges supported
+- Support for: Bittrex (more to come soon)
 - Transaction signing either via private signing-key or private active-key
 - RPC Failover
 - USDT > USD calulation
 - PEG support
 - Robust error handling.
 
-
 ## Docker Installation (Recommended)
+
 It is recommended to use Docker.
 
 ```
-git clone https://github.com/witness-essentials/pricefeed.git
-cd pricefeed
+git clone git@github.com:therealwolf42/hive-witness-essentials.git
+cd essentials/pricefeed
 chmod +x run.sh
 ./run.sh install_docker
 ./run.sh build
@@ -26,9 +26,10 @@ To get a list of possible commands, use: `./run.sh help`
 
 ## Manual Installation
 
-However, you can also  run node manually, with PM2 or your favourite program.
+However, you can also run node manually, with PM2 or your favourite program.
 
 #### Requirement: Node >= 8
+
 ```
 sudo apt update
 sudo apt install -y curl software-properties-common gnupg build-essential libssl-dev
@@ -38,13 +39,15 @@ sudo npm i npm@latest -g
 ```
 
 #### 1.) Clone Repository and install packages
+
 ```
 git clone https://github.com/witness-essentials/pricefeed.git
 cd pricefeed
-npm i # or yarn
+yarn
 ```
 
 #### 2.) Edit your Config
+
 ```
 cp configs/config.example.json configs/config.json
 nano configs/config.json
@@ -67,19 +70,22 @@ Info: The active key is now optional and only needed if your witness is disabled
 ## Start
 
 Option 1: NPM (no background)
+
 ```
 npm start
 ```
 
 Option 2: PM2 (background)
-```
-sudo npm install pm2 -g # if you haven't installed it yet
 
-pm2 start pm2.js --env production # or --env development
+```
+yarn global add pm2 # if you haven't installed it yet
+
+pm2 start ecosystem.config.js --env production # or --env development
 pm2 logs pricefeed
 ```
 
 Option 3: Docker (background)
+
 ```
 ./run.sh start
 ./run.sh logs
