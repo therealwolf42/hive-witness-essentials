@@ -12,7 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "@hivechain/dhive": "^0.13.0",
-    "@types/node": "^10.5.1",
     "convict": "^4.3.2",
     "dotenv": "^5.0.0",
     "moment": "^2.23.0",
