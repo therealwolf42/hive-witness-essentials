@@ -1,4 +1,4 @@
-# Witness Essentials - Monorepo
+# Hive Witness Essentials
 
 Includes Watcher, Pricefeed, Remote, CLI inside `essentials`
 
@@ -9,6 +9,13 @@ Docker support:
 ```
 git clone git@github.com:therealwolf42/hive-witness-essentials.git
 cd essentials/{watcher,pricefeed,remote} # select one!
+
+# If you need to migrate your previous config, do it now!
+cp configs/config.example.json configs/config.json
+
+# Now replace/enter everything besides the RPC nodes as they are up-to-date.
+## On MacOS you can delete lines with control + k
+nano configs/config.json
 
 # script needs proper rights
 chmod +x run.sh
