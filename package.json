@@ -10,6 +10,7 @@
     "add:pricefeed": "yarn workspace @witness-essentials/pricefeed add",
     "add:remote": "yarn workspace @witness-essentials/remote add",
     "add:watcher": "yarn workspace @witness-essentials/watcher add",
+    "add:util": "yarn workspace @witness-essentials/package add",
     "lint": "eslint --ext .ts,.js,.vue . --ignore-path .gitignore ."
   },
   "workspaces": {

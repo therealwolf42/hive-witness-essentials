@@ -35,19 +35,10 @@ export const update_witness = async (
     }
   } catch (error) {
     console.error(error)
-    if (options.retries < 2) {
+    if (options.retries < 3) {
       await essentials.timeout(1)
       options.retries += 1
-      await update_witness(
-        current_signing_key,
-        transaction_signing_key,
-        props,
-        options,
-      )
-    } else {
-      failover()
-      options.retries = 0
-      await update_witness(
+      return update_witness(
         current_signing_key,
         transaction_signing_key,
         props,
@@ -68,23 +59,11 @@ export const get_witness = async (node = '', retries = 0) => {
     )
   } catch (error) {
     console.error(error)
-    if (retries < 2) {
+    if (retries < 3) {
       await essentials.timeout(1)
       await get_witness(node, (retries += 1))
-    } else {
-      failover()
-      await get_witness(node, 0)
     }
   }
-}
-
-export const failover = async () => {
-  _g.current_node = essentials.failover_node(
-    _g.config.RPC_NODES,
-    _g.current_node,
-  )
-  essentials.log(`Switched Node: ${_g.current_node}`)
-  _g.client = new dhive.Client(_g.current_node, {timeout: 8 * 1000})
 }
 
 export const set_initial_witness = (x) => {

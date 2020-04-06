@@ -53,14 +53,10 @@ export const publish_feed = async (
     )
   } catch (error) {
     console.error(error)
-    if (options.retries < 2) {
+    if (options.retries < 3) {
       await essentials.timeout(1)
       options.retries += 1
-      await publish_feed(price, key, options)
-    } else {
-      failover()
-      options.retries = 0
-      await publish_feed(price, key, options)
+      return publish_feed(price, key, options)
     }
   }
 }
@@ -80,14 +76,10 @@ export const get_witness = async (options: Options = {retries: 0}) => {
     return witness
   } catch (error) {
     console.error(error)
-    if (options.retries < 2) {
+    if (options.retries < 3) {
       await essentials.timeout(1)
       options.retries += 1
-      await get_witness(options)
-    } else {
-      failover()
-      options.retries = 0
-      await get_witness(options)
+      return get_witness(options)
     }
   }
 }
@@ -120,13 +112,4 @@ export const get_exchanges_for_display = (exchanges, active) => {
     }
   }
   return list
-}
-
-export const failover = async () => {
-  _g.current_node = essentials.failover_node(
-    _g.config.RPC_NODES,
-    _g.current_node,
-  )
-  essentials.log(`Switched Node: ${_g.current_node}`)
-  _g.client = new dsteem.Client(_g.current_node, {timeout: 8 * 1000})
 }

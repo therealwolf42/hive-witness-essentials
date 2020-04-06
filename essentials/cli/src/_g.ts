@@ -10,8 +10,10 @@ export let CURRENT_BACKUP_KEY = ''
 
 export let config = require('../configs/config.js').get()
 
-export let current_node: string = config.RPC_NODES[0]
-export let client: Client = new Client(current_node, {timeout: 8 * 1000}) //TESTNET: dsteem.Client.testnet({ timeout: 8 * 1000 })
+export let client: Client = new Client(config.RPC_NODES, {
+  timeout: 8 * 1000,
+  failoverThreshold: 4,
+})
 
 export let witness_data = {
   witness: config.WITNESS,

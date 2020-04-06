@@ -1,3 +1,3 @@
 export * from './alert'
-export * from './steem'
+export * from './hive'
 export * from './util'

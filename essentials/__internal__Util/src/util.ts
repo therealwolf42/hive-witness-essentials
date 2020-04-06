@@ -1,21 +1,4 @@
 /**
- * Failsover to the next RPC node
- * @param rpc_nodes Array of all nodes
- * @param current_rpc_node Current node
- */
-export const failover_node = (
-  rpc_nodes: Array<string>,
-  current_rpc_node: string,
-) => {
-  if (rpc_nodes && rpc_nodes.length > 1) {
-    let index: number = rpc_nodes.indexOf(current_rpc_node) + 1
-    if (index === rpc_nodes.length) index = 0
-    current_rpc_node = rpc_nodes[index]
-  }
-  return current_rpc_node
-}
-
-/**
  * Shifts the active signing-key to the first spot
  */
 export const order_keys = (

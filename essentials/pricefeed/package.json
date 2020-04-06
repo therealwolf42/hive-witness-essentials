@@ -11,10 +11,10 @@
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
-    "@hivechain/dhive": "^0.13.0",
+    "@hivechain/dhive": "^0.13.3",
     "axios": "^0.18.1",
     "convict": "^4.3.2",
     "dotenv": "^5.0.0",
-    "witness-essentials-package": "^2.0.0"
+    "witness-essentials-package": "^2.0.2"
   }
 }

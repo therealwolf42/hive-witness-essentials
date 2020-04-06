@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import * as dhive from '@hivechain/dhive'
+import {Client} from '@hivechain/dhive'
 import * as moment from 'moment'
 
 export const NULL_KEY = 'STM1111111111111111111111111111111114T1Anm'
@@ -23,9 +23,9 @@ export let last_missed = moment.utc().valueOf()
 
 export let config = require('../configs/config.js').get()
 
-export let current_node: string = config.RPC_NODES[0]
-export let client: dhive.Client = new dhive.Client(current_node, {
+export let client: Client = new Client(config.RPC_NODES, {
   timeout: 8 * 1000,
+  failoverThreshold: 4,
 })
 
 export let witness_data = {
