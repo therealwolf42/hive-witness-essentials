@@ -32,7 +32,7 @@ const config = convict({
       binance: true,
       huobi: true,
       upbit: true,
-      poloniex: true,
+      probit: true,
     },
     arg: 'exchanges',
   },

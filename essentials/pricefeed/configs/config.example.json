@@ -17,7 +17,8 @@
     "bittrex": true,
     "binance": true,
     "huobi": true,
-    "upbit": true
+    "upbit": true,
+    "probit": true
   },
   "CONVERT_USDT_TO_USD": true,
   "EXCHANGES_USDT": {

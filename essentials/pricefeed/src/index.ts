@@ -5,7 +5,9 @@ import _g = require('./_g')
 
 import {
   bittrex_price,
-  /* probit_price, binance_price, huobi_price, upbit_price,*/ bittrex_usd_price,
+  probit_price,
+  huobi_price,
+  bittrex_usd_price,
   kraken_usd_price,
 } from './exchanges'
 import {
@@ -39,10 +41,12 @@ const start = async () => {
     console.log('\n' + '----------------------------' + '\n')
     console.log(`Starting Pricefeed\n`)
     console.log(`Witness: @${_g.config.WITNESS}`)
+    console.log(`Active Exchanges: [ ${active_exchanges.join(', ')} ]`)
     console.log(
-      `Active Exchanges: [ ${'Bittrex' /* active_exchanges.join(', ')*/} ]`,
+      `Inactive Exchanges: [ ${
+        inactive_exchanges.length > 0 ? inactive_exchanges.join(', ') : '-'
+      } ]`,
     )
-    // console.log(`Inactive Exchanges: [ ${inactive_exchanges.length > 0 ? inactive_exchanges.join(', ') : '-'} ]`)
     console.log(
       `Active USDT Exchanges: [ ${active_usdt_exchanges.join(', ')} ]`,
     )
@@ -113,9 +117,10 @@ const update_pricefeed = async () => {
     let promises = []
 
     if (_g.config.EXCHANGES.bittrex) promises.push(bittrex_price())
-    // if(_g.config.EXCHANGES.probit) promises.push(probit_price())
-    /* if (_g.config.EXCHANGES.binance) promises.push(binance_price())
+    if (_g.config.EXCHANGES.probit) promises.push(probit_price())
     if (_g.config.EXCHANGES.huobi) promises.push(huobi_price())
+    /* if (_g.config.EXCHANGES.binance) promises.push(binance_price())
+    
     if (_g.config.EXCHANGES.upbit) promises.push(upbit_price())*/
 
     const x = await Promise.all(promises)
