@@ -59,7 +59,7 @@ const start = async () => {
           // No private active-key or private signing-keys?
           const msg =
             ctx.session.command === 'disable' ||
-            ctx.session.param === _g.NULL_KEY
+              ctx.session.param === _g.NULL_KEY
               ? `Activating an already disabled witness requires the private active-key. Private signing-keys are insufficient in that case.`
               : 'Missing private signing-keys.'
           ctx.reply(msg)
@@ -75,7 +75,7 @@ const start = async () => {
               {
                 set_properties: Boolean(
                   transaction_signing_key !== _g.config.ACTIVE_KEY &&
-                    props.new_signing_key !== _g.NULL_KEY,
+                  props.new_signing_key !== _g.NULL_KEY,
                 ),
               },
             )
@@ -96,7 +96,7 @@ const start = async () => {
               {
                 set_properties: Boolean(
                   transaction_signing_key !== _g.config.ACTIVE_KEY &&
-                    props.new_signing_key !== _g.NULL_KEY,
+                  props.new_signing_key !== _g.NULL_KEY,
                 ),
               },
             )
@@ -104,6 +104,21 @@ const start = async () => {
             // Reply via Telegram
             ctx.reply(`Disabled Witness`)
             essentials.log(`Disabled Witness`)
+          }
+          if (ctx.session.command === 'status') {
+            witness = await get_witness()
+            let key_name = `N/A`
+            let signing_msg = ``
+
+            for (const k of _g.config.SIGNING_KEYS) {
+              if (k.public == witness.signing_key && 'name' in k) {
+                key_name = k.name
+              }
+              signing_msg += `\nSigning Key: ${k.public} | Name: ${k.name}`
+            }
+            let msg = `Witness "${witness.owner}" is currently set to signing key ${witness.signing_key} (name: ${key_name}) and has ${witness.total_missed} missed blocks.\n\n`
+            msg += signing_msg
+            return ctx.reply(msg)
           }
 
           // Command: Rotate through keys
@@ -164,6 +179,14 @@ const start = async () => {
       let msg = 'Please /confirm <password>.'
       if (!config.ACTIVE_KEY)
         msg += ` Important: Disabling your witness now will result in you not being able to reactive it via remote-control, due to missing private active-key in config.`
+      return ctx.reply(msg)
+    })
+
+    bot.command('status', async (ctx: any) => {
+      witness = await get_witness()
+      ctx.session.command = 'status'
+      let msg = `Witness "${witness.owner}" is currently set to signing key ${witness.signing_key}, and has ${witness.total_missed} missed blocks.\n\n`
+      msg += `For more information, please /confirm <password>.`
       return ctx.reply(msg)
     })
 
