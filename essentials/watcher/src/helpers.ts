@@ -1,5 +1,4 @@
 import * as essentials from 'witness-essentials-package'
-import * as dhive from '@hivechain/dhive'
 
 import _g = require('./_g')
 const config = _g.config
@@ -13,7 +12,7 @@ interface Options {
 export const update_witness = async (
   current_signing_key: string,
   transaction_signing_key: string,
-  props: dhive.utils.WitnessProps,
+  props: essentials.dhive.utils.WitnessProps,
   options: Options = {},
 ) => {
   try {

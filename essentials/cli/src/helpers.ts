@@ -1,5 +1,10 @@
-import * as essentials from 'witness-essentials-package'
-import * as dhive from '@hivechain/dhive'
+import {
+  dhive,
+  witness_set_properties,
+  update_witness as updateWitnessEssentials,
+  timeout,
+  get_witness_by_account,
+} from 'witness-essentials-package'
 import * as readline from 'readline-sync'
 import _g = require('./_g')
 
@@ -20,10 +25,13 @@ export const update_witness = async (
 
     let client = _g.client
     if (options.node)
-      client = new dhive.Client(options.node, {timeout: 8 * 1000})
+      client = new dhive.Client(options.node, {
+        timeout: 8 * 1000,
+        rebrandedApi: true,
+      })
 
     if (options.set_properties) {
-      await essentials.witness_set_properties(
+      await witness_set_properties(
         client,
         _g.witness_data.witness,
         current_signing_key,
@@ -32,7 +40,7 @@ export const update_witness = async (
       )
     } else {
       console.log('updating witness')
-      await essentials.update_witness(
+      await updateWitnessEssentials(
         client,
         props.new_signing_key.toString(),
         _g.witness_data,
@@ -42,7 +50,7 @@ export const update_witness = async (
   } catch (error) {
     console.error(error)
     if (options.retries < 3) {
-      await essentials.timeout(1)
+      await timeout(1)
       options.retries += 1
       return update_witness(
         current_signing_key,
@@ -60,17 +68,22 @@ export const get_witness = async (options: Options = {retries: 0}) => {
 
     let client = _g.client
     if (options.node)
-      client = new dhive.Client(options.node, {timeout: 8 * 1000})
+      client = new dhive.Client(options.node, {
+        timeout: 8 * 1000,
+        rebrandedApi: true,
+      })
 
-    const witness = await essentials.get_witness_by_account(
+    const witness = await get_witness_by_account(
       client,
       _g.witness_data.witness,
     )
+
+    console.log(witness)
     return witness
   } catch (error) {
     console.error(error)
     if (options.retries < 3) {
-      await essentials.timeout(1)
+      await timeout(1)
       options.retries += 1
       return get_witness(options)
     }

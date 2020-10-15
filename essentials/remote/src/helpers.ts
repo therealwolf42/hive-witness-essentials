@@ -1,5 +1,11 @@
-import * as essentials from 'witness-essentials-package'
-import * as dhive from '@hivechain/dhive'
+import {
+  dhive,
+  witness_set_properties,
+  update_witness as updateWitnessEssentials,
+  timeout,
+  order_keys,
+  get_witness_by_account,
+} from 'witness-essentials-package'
 import _g = require('./_g')
 
 interface Options {
@@ -18,7 +24,7 @@ export const update_witness = async (
     if (!options.retries) options.retries = 0
 
     if (options.set_properties) {
-      await essentials.witness_set_properties(
+      await witness_set_properties(
         _g.client,
         _g.witness_data.witness,
         current_signing_key,
@@ -26,7 +32,7 @@ export const update_witness = async (
         transaction_signing_key,
       )
     } else {
-      await essentials.update_witness(
+      await updateWitnessEssentials(
         _g.client,
         props.new_signing_key.toString(),
         _g.witness_data,
@@ -36,7 +42,7 @@ export const update_witness = async (
   } catch (error) {
     console.error(error)
     if (options.retries < 3) {
-      await essentials.timeout(1)
+      await timeout(1)
       options.retries += 1
       return update_witness(
         current_signing_key,
@@ -51,16 +57,14 @@ export const update_witness = async (
 export const get_witness = async (node = '', retries = 0) => {
   try {
     let client = _g.client
-    if (node) client = new dhive.Client(node, {timeout: 8 * 1000})
+    if (node)
+      client = new dhive.Client(node, {timeout: 8 * 1000, rebrandedApi: true})
 
-    return await essentials.get_witness_by_account(
-      client,
-      _g.witness_data.witness,
-    )
+    return await get_witness_by_account(client, _g.witness_data.witness)
   } catch (error) {
     console.error(error)
     if (retries < 3) {
-      await essentials.timeout(1)
+      await timeout(1)
       await get_witness(node, (retries += 1))
     }
   }
@@ -76,8 +80,5 @@ export const set_initial_witness = (x) => {
     _g.config.SIGNING_KEYS.push({public: x.signing_key, private: ''})
   }
 
-  _g.config.SIGNING_KEYS = essentials.order_keys(
-    _g.config.SIGNING_KEYS,
-    x.signing_key,
-  )
+  _g.config.SIGNING_KEYS = order_keys(_g.config.SIGNING_KEYS, x.signing_key)
 }

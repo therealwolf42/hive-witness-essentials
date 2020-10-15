@@ -11,7 +11,12 @@
     "add:remote": "yarn workspace @witness-essentials/remote add",
     "add:watcher": "yarn workspace @witness-essentials/watcher add",
     "add:util": "yarn workspace @witness-essentials/package add",
-    "lint": "eslint --ext .ts,.js,.vue . --ignore-path .gitignore ."
+    "lint": "eslint --ext .ts,.js,.vue . --ignore-path .gitignore .",
+    "update": "yarn run update:cli && yarn run update:pricefeed && yarn run update:remote && yarn run update:watcher",
+    "update:cli": "yarn workspace @witness-essentials/cli add witness-essentials-package@latest",
+    "update:pricefeed": "yarn workspace @witness-essentials/pricefeed add witness-essentials-package@latest",
+    "update:remote": "yarn workspace @witness-essentials/remote add witness-essentials-package@latest",
+    "update:watcher": "yarn workspace @witness-essentials/watcher add witness-essentials-package@latest"
   },
   "workspaces": {
     "packages": [

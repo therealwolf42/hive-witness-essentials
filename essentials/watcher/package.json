@@ -1,6 +1,6 @@
 {
   "name": "@witness-essentials/watcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Watcher alerts you in case of missed blocks and changes your signing key automatically",
   "main": "src/index.ts",
   "scripts": {
@@ -11,12 +11,10 @@
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
-    "@hivechain/dhive": "^0.13.3",
     "convict": "^4.3.2",
     "dotenv": "^5.0.0",
     "moment": "^2.23.0",
     "readline-sync": "^1.4.9",
-    "steem": "^0.7.1",
-    "witness-essentials-package": "^2.0.2"
+    "witness-essentials-package": "^3.0.4"
   }
 }

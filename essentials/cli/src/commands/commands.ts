@@ -26,7 +26,7 @@ export const cmd_update_key = async (
   }
 
   // If not key has been given without wanting to rotate
-  if (!key || !key.startsWith('ST')) return console.log('Invalid Key')
+  if (!key) return console.log('Invalid Key')
 
   // Get the private key from either the signing keys or the active key
   let transaction_signing_key = essentials.choose_transaction_key(
