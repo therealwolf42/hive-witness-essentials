@@ -27,6 +27,7 @@ export let client: dhive.Client = new dhive.Client(config.RPC_NODES, {
   timeout: 8 * 1000,
   failoverThreshold: 4,
   rebrandedApi: true,
+  consoleOnFailover: true,
 })
 
 export let witness_data = {

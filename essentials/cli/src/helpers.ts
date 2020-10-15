@@ -28,6 +28,7 @@ export const update_witness = async (
       client = new dhive.Client(options.node, {
         timeout: 8 * 1000,
         rebrandedApi: true,
+        consoleOnFailover: true,
       })
 
     if (options.set_properties) {
@@ -71,6 +72,7 @@ export const get_witness = async (options: Options = {retries: 0}) => {
       client = new dhive.Client(options.node, {
         timeout: 8 * 1000,
         rebrandedApi: true,
+        consoleOnFailover: true,
       })
 
     const witness = await get_witness_by_account(
