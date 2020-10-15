@@ -1,7 +1,8 @@
 {
   "name": "@witness-essentials/package",
-  "changeTo": "witness-essentials-package",
-  "version": "3.0.4",
+  "useThisWhenPublishing": "witness-essentials-package",
+  "useThisNormally": "@witness-essentials/package",
+  "version": "3.0.5",
   "description": "Basic methods internally used for Witness Essentials",
   "main": "dist/index.js",
   "scripts": {
@@ -12,7 +13,7 @@
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
-    "@hiveio/dhive": "^0.14.3",
+    "@hiveio/dhive": "^0.14.4",
     "@hiveio/hive-js": "^0.8.5",
     "crypto-js": "^3.1.9-1",
     "nodemailer": "^4.6.8",
