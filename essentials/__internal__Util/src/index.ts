@@ -1,3 +1,5 @@
 export * from './alert'
 export * from './hive'
 export * from './util'
+export * as dhive from '@hiveio/dhive'
+export * as hivejs from '@hiveio/hive-js'

@@ -1,5 +1,5 @@
-import * as dhive from '@hivechain/dhive'
-import * as steem from 'steem-js-witness-fix'
+import * as dhive from '@hiveio/dhive'
+import * as hive from '@hiveio/hive-js'
 import {convert_nai_precision} from './util'
 
 export interface WitnessData {
@@ -7,7 +7,7 @@ export interface WitnessData {
   props: {
     account_creation_fee: string
     maximum_block_size: number
-    sbd_interest_rate: number
+    hbd_interest_rate: number
   }
   url: string
 }
@@ -28,12 +28,14 @@ export const update_witness = async (
   signing_key: string,
   witness_data: WitnessData,
   transaction_signing_key: string,
+  fee = '0.000',
 ) => {
+  witness_data.props = cleanWitnessProps(witness_data.props)
   const op: dhive.WitnessUpdateOperation = [
     'witness_update',
     {
       block_signing_key: signing_key,
-      fee: '0.000 HIVE',
+      fee: `${fee} HIVE`,
       owner: witness_data.witness,
       props: witness_data.props,
       url: witness_data.url,
@@ -56,6 +58,7 @@ export const witness_set_properties = async (
   props: dhive.utils.WitnessProps,
   transaction_signing_key: string,
 ) => {
+  props = cleanWitnessProps(props)
   props.key = current_signing_key
   const op = dhive.utils.buildWitnessUpdateOp(owner, props)
   op[1].props.sort((a, b) => a[0].localeCompare(b[0]))
@@ -77,13 +80,18 @@ export const get_witness_by_account = async (client: dhive.Client, witness) => {
       x['witnesses'][0].props.account_creation_fee.precision,
     )
     witness.props.account_creation_fee = `${account_creation_fee} HIVE`
+    witness.props = cleanWitnessProps(witness.props)
+    if (witness.sbd_exchange_rate) {
+      witness.hbd_exchange_rate = witness.sbd_interest_rate
+      delete witness.sbd_interest_rate
+    }
     return witness
   }
   return {}
 }
 
 export const key_valid = (key, key_auths) => {
-  const pub = steem.auth.wifToPublic(key)
+  const pub = hive.auth.wifToPublic(key)
   const filter = key_auths.filter((x) => x[0] === pub)
   return filter.length > 0
 }
@@ -92,4 +100,12 @@ export const get_account = async (client: dhive.Client, name) => {
   const acc = await client.database.getAccounts([name])
   if (!acc) return {}
   return acc[0]
+}
+
+export const cleanWitnessProps = (props: any) => {
+  if ((props as any).sbd_interest_rate) {
+    props.hbd_interest_rate = (props as any).sbd_interest_rate
+    delete (props as any).sbd_interest_rate
+  }
+  return props
 }

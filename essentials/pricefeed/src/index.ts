@@ -1,6 +1,5 @@
 require('dotenv').config()
 import * as essentials from 'witness-essentials-package'
-
 import _g = require('./_g')
 
 import {

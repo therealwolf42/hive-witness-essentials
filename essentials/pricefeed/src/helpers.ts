@@ -1,5 +1,10 @@
-import * as essentials from 'witness-essentials-package'
-import * as dsteem from '@hivechain/dhive'
+import {
+  dhive,
+  witness_set_properties,
+  log,
+  timeout,
+  get_witness_by_account,
+} from 'witness-essentials-package'
 import _g = require('./_g')
 
 interface Options {
@@ -17,18 +22,16 @@ export const publish_feed = async (
     if (!options.retries) options.retries = 0
     const PEG = _g.config.PEG ? _g.config.PEG : 1
 
-    const base: dsteem.Asset = dsteem.Asset.fromString(
-      `${price.toFixed(3)} HBD`,
-    )
-    const quote: dsteem.Asset = dsteem.Asset.fromString(
+    const base: dhive.Asset = dhive.Asset.fromString(`${price.toFixed(3)} HBD`)
+    const quote: dhive.Asset = dhive.Asset.fromString(
       (1 / PEG).toFixed(3) + ' HIVE',
     )
 
-    const exchange_rate: dsteem.PriceType = new dsteem.Price(base, quote)
+    const exchange_rate: dhive.PriceType = new dhive.Price(base, quote)
 
-    const props: any = {sbd_exchange_rate: exchange_rate}
+    const props: any = {hbd_exchange_rate: exchange_rate}
     if (options.set_properties) {
-      await essentials.witness_set_properties(
+      await witness_set_properties(
         _g.client,
         _g.config.WITNESS,
         _g.CURRENT_SIGNING_KEY,
@@ -36,17 +39,17 @@ export const publish_feed = async (
         key,
       )
     } else {
-      const op: dsteem.FeedPublishOperation = [
+      const op: dhive.FeedPublishOperation = [
         'feed_publish',
         {exchange_rate, publisher: _g.config.WITNESS},
       ]
       await _g.client.broadcast.sendOperations(
         [op],
-        dsteem.PrivateKey.from(key),
+        dhive.PrivateKey.fromString(key),
       )
     }
 
-    essentials.log(
+    log(
       `Published Pricefeed: ${base.amount.toFixed(3)}$\nNext feed in ${
         _g.config.INTERVAL
       } Minutes\n`,
@@ -54,7 +57,7 @@ export const publish_feed = async (
   } catch (error) {
     console.error(error)
     if (options.retries < 3) {
-      await essentials.timeout(1)
+      await timeout(1)
       options.retries += 1
       return publish_feed(price, key, options)
     }
@@ -67,17 +70,17 @@ export const get_witness = async (options: Options = {retries: 0}) => {
 
     let client = _g.client
     if (options.node)
-      client = new dsteem.Client(options.node, {timeout: 8 * 1000})
+      client = new dhive.Client(options.node, {
+        timeout: 8 * 1000,
+        rebrandedApi: true,
+      })
 
-    const witness = await essentials.get_witness_by_account(
-      client,
-      _g.config.WITNESS,
-    )
+    const witness = await get_witness_by_account(client, _g.config.WITNESS)
     return witness
   } catch (error) {
     console.error(error)
     if (options.retries < 3) {
-      await essentials.timeout(1)
+      await timeout(1)
       options.retries += 1
       return get_witness(options)
     }

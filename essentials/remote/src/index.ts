@@ -59,7 +59,7 @@ const start = async () => {
           // No private active-key or private signing-keys?
           const msg =
             ctx.session.command === 'disable' ||
-              ctx.session.param === _g.NULL_KEY
+            ctx.session.param === _g.NULL_KEY
               ? `Activating an already disabled witness requires the private active-key. Private signing-keys are insufficient in that case.`
               : 'Missing private signing-keys.'
           ctx.reply(msg)
@@ -75,7 +75,7 @@ const start = async () => {
               {
                 set_properties: Boolean(
                   transaction_signing_key !== _g.config.ACTIVE_KEY &&
-                  props.new_signing_key !== _g.NULL_KEY,
+                    props.new_signing_key !== _g.NULL_KEY,
                 ),
               },
             )
@@ -96,7 +96,7 @@ const start = async () => {
               {
                 set_properties: Boolean(
                   transaction_signing_key !== _g.config.ACTIVE_KEY &&
-                  props.new_signing_key !== _g.NULL_KEY,
+                    props.new_signing_key !== _g.NULL_KEY,
                 ),
               },
             )

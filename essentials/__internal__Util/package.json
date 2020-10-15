@@ -1,19 +1,21 @@
 {
-  "name": "@witness-essentials/package",
-  "version": "2.0.2",
+  "name": "witness-essentials-package",
+  "changeTo": "witness-essentials-package",
+  "version": "3.0.4",
   "description": "Basic methods internally used for Witness Essentials",
   "main": "dist/index.js",
   "scripts": {
+    "prepublishOnly": "yarn run build",
     "build": "tsc -b .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
-    "@hivechain/dhive": "^0.13.3",
+    "@hiveio/dhive": "^0.14.3",
+    "@hiveio/hive-js": "^0.8.5",
     "crypto-js": "^3.1.9-1",
     "nodemailer": "^4.6.8",
-    "steem-js-witness-fix": "^0.7.1",
     "superagent": "^3.8.2",
     "telegraf": "^3.23.1",
     "twilio": "^3.19.2"

@@ -46,8 +46,8 @@ const read = () => {
   const maximum_block_size = readline.question(
     `maximum_block_size? [${_g.witness_data.props.maximum_block_size}] : `,
   )
-  const sbd_interest_rate = readline.question(
-    `sbd_interest_rate? [${_g.witness_data.props.sbd_interest_rate}] : `,
+  const hbd_interest_rate = readline.question(
+    `hbd_interest_rate? [${_g.witness_data.props.hbd_interest_rate}] : `,
   )
   const account_subsidy_budget = Number(
     readline.question(
@@ -78,13 +78,13 @@ const read = () => {
     )
   }
   if (
-    sbd_interest_rate !== '' &&
-    sbd_interest_rate >= 0 &&
-    sbd_interest_rate !== _g.witness_data.props.sbd_interest_rate &&
-    !isNaN(Number(sbd_interest_rate))
+    hbd_interest_rate !== '' &&
+    hbd_interest_rate >= 0 &&
+    hbd_interest_rate !== _g.witness_data.props.hbd_interest_rate &&
+    !isNaN(Number(hbd_interest_rate))
   ) {
-    props.sbd_interest_rate = _g.witness_data.props.sbd_interest_rate = Number(
-      sbd_interest_rate,
+    props.hbd_interest_rate = _g.witness_data.props.hbd_interest_rate = Number(
+      hbd_interest_rate,
     )
   }
   if (account_subsidy_budget && !isNaN(Number(account_subsidy_budget))) {
