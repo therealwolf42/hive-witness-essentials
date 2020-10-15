@@ -73,6 +73,7 @@ export const get_witness = async (options: Options = {retries: 0}) => {
       client = new dhive.Client(options.node, {
         timeout: 8 * 1000,
         rebrandedApi: true,
+        consoleOnFailover: true,
       })
 
     const witness = await get_witness_by_account(client, _g.config.WITNESS)

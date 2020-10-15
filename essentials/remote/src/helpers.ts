@@ -58,7 +58,11 @@ export const get_witness = async (node = '', retries = 0) => {
   try {
     let client = _g.client
     if (node)
-      client = new dhive.Client(node, {timeout: 8 * 1000, rebrandedApi: true})
+      client = new dhive.Client(node, {
+        timeout: 8 * 1000,
+        rebrandedApi: true,
+        consoleOnFailover: true,
+      })
 
     return await get_witness_by_account(client, _g.witness_data.witness)
   } catch (error) {
