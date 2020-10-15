@@ -30,10 +30,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@hiveio/dhive@^0.14.4":
-  version "0.14.4"
-  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.4.tgz#ced791388cdbdd88803c6b84181ccf3ca41aa7e6"
-  integrity sha512-pGLL++JvXmprSedTV5CWvabPBi4FrosKkkPQKLhYRXPu+a2RRhrUDnlDvThpnAW2U9V45wUZAfvCjM+S9KTtcQ==
+"@hiveio/dhive@^0.14.6":
+  version "0.14.6"
+  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-0.14.6.tgz#48bb3af09c443eebf88fa43f2e2076f60b4ca4f0"
+  integrity sha512-GdOc4vnZoA+gId2e3b2lbdPcD37vCZhtRLnBpyEpYmpwbPCLcNMPW6su8bpy4Q9nzryCYnGYTcZ2mbz8IUiNNg==
   dependencies:
     bs58 "^4.0.1"
     bytebuffer "^5.0.1"
@@ -2936,12 +2936,12 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-witness-essentials-package@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/witness-essentials-package/-/witness-essentials-package-3.0.5.tgz#fca59d1e4de2f4b768431802957eb91d84ff03b1"
-  integrity sha512-PxDNxgtMxKzuT0gl+2QnbNtu7pjowT5Ee6h7TxlxqaARV/Vm9QwWK+9OjN042dEUWPqcuaReOKWUD4M/EvvesA==
+witness-essentials-package@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/witness-essentials-package/-/witness-essentials-package-3.0.6.tgz#a83b18cb6dfabe63632939456c86320e409eec0f"
+  integrity sha512-nmyeM51sojwT+locw6BvaaYzjnmhfxnPksUw+xMh/DirUp3ncSxsPJZRAJJeiO34s1vH4qa3nQk5uI7lcujR0w==
   dependencies:
-    "@hiveio/dhive" "^0.14.4"
+    "@hiveio/dhive" "^0.14.6"
     "@hiveio/hive-js" "^0.8.5"
     crypto-js "^3.1.9-1"
     nodemailer "^4.6.8"
