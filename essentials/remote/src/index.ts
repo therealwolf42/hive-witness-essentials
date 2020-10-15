@@ -44,7 +44,7 @@ const start = async () => {
       const param = text.substring(8, text.length).trim()
 
       // Check if the given password is correct
-      if (param === _g.config.TELEGRAM_PASSWORD) {
+      if (true || param === _g.config.TELEGRAM_PASSWORD) {
         witness = await get_witness()
         _g.witness_data.props = witness.props
         _g.witness_data.url = witness.url
@@ -153,9 +153,9 @@ const start = async () => {
         // Resets the current session
         ctx.session.command = ''
         ctx.session.param = ''
-      } else {
+      } /* else {
         return ctx.reply(`Invalid Password. Try again with /confirm.`)
-      }
+      } */
     })
 
     // Command for changing signing-key. This requires the confirm command afterwards.
@@ -164,19 +164,21 @@ const start = async () => {
       const param = text.substring(7, text.length).trim()
       ctx.session.param = param
       ctx.session.command = 'enable'
-      return ctx.reply('Please /confirm <password>.')
+      return ctx.reply('Are you sure? Please /confirm')
     })
 
     // Command for rotating through all signing keys. This requires the confirm command afterwards.
     bot.command('rotate', (ctx: any) => {
       ctx.session.command = 'rotate'
-      return ctx.reply('Please /confirm <password>.')
+      ctx.session.param = ''
+      return ctx.reply('Are you sure? Please /confirm')
     })
 
     // Command for disabling witness. This requires the confirm command afterwards.
     bot.command('disable', (ctx: any) => {
       ctx.session.command = 'disable'
-      let msg = 'Please /confirm <password>.'
+      ctx.session.param = ''
+      let msg = 'Are you sure? Please /confirm'
       if (!config.ACTIVE_KEY)
         msg += ` Important: Disabling your witness now will result in you not being able to reactive it via remote-control, due to missing private active-key in config.`
       return ctx.reply(msg)
@@ -185,8 +187,9 @@ const start = async () => {
     bot.command('status', async (ctx: any) => {
       witness = await get_witness()
       ctx.session.command = 'status'
+      ctx.session.param = ''
       let msg = `Witness "${witness.owner}" is currently set to signing key ${witness.signing_key}, and has ${witness.total_missed} missed blocks.\n\n`
-      msg += `For more information, please /confirm <password>.`
+      msg += `For more information, please /confirm`
       return ctx.reply(msg)
     })
 
