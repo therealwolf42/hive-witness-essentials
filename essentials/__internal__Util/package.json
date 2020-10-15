@@ -1,5 +1,5 @@
 {
-  "name": "witness-essentials-package",
+  "name": "@witness-essentials/package",
   "changeTo": "witness-essentials-package",
   "version": "3.0.4",
   "description": "Basic methods internally used for Witness Essentials",
