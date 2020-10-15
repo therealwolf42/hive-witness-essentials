@@ -1,6 +1,6 @@
 {
   "name": "@witness-essentials/remote",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Remote control script for Hive Witnesses",
   "main": "src/index.ts",
   "scripts": {
@@ -14,6 +14,6 @@
     "dotenv": "^5.0.0",
     "readline-sync": "^1.4.9",
     "telegraf": "^3.24.0",
-    "witness-essentials-package": "^3.0.4"
+    "witness-essentials-package": "^3.0.5"
   }
 }

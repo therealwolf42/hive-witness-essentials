@@ -43,6 +43,8 @@ const start = async () => {
       const text = ctx.message.text
       const param = text.substring(8, text.length).trim()
 
+      await ctx.deleteMessage()
+
       // Check if the given password is correct
       if (param === _g.config.TELEGRAM_PASSWORD) {
         witness = await get_witness()
@@ -146,7 +148,7 @@ const start = async () => {
             ctx.reply(`Updated Signing Key to ${props.new_signing_key}`)
             essentials.log(`Updated Signing Key to ${props.new_signing_key}`)
           } else {
-            ctx.reply(`No command.`)
+            // ctx.reply(`No command.`)
           }
         }
 
