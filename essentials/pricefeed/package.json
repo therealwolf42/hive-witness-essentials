@@ -11,7 +11,7 @@
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "convict": "^4.3.2",
     "dotenv": "^5.0.0",
     "witness-essentials-package": "^3.0.8"
