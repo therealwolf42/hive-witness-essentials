@@ -113,7 +113,7 @@ export const bittrex_usd_price = async () => {
     _g.usd_lines += `Bittrex: ${price.toFixed(3)}, `
     return price
   } catch (error) {
-    console.error(`kraken_usd_price`, error.message)
+    console.error(`kraken_usd_price`, error)
     return 0
   }
 }
@@ -131,7 +131,7 @@ export const kraken_usd_price = async () => {
     _g.usd_lines += `Kraken: ${price.toFixed(3)}, `
     return price
   } catch (error) {
-    console.error(`kraken_usd_price`, error.message)
+    console.error(`kraken_usd_price`, error)
     return 0
   }
 }
