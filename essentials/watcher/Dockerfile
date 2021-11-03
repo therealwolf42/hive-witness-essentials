@@ -5,7 +5,7 @@ COPY package*.json yarn.* ecosystem.config.js ./
 
 # Fix for 'could not get uid/gid'
 RUN npm config set unsafe-perm true
-
+RUN npm i --save-dev @types/node
 RUN yarn
 
 RUN yarn global add pm2 ts-node typescript
