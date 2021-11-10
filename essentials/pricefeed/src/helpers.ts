@@ -72,7 +72,6 @@ export const get_witness = async (options: Options = {retries: 0}) => {
     if (options.node)
       client = new dhive.Client(options.node, {
         timeout: 8 * 1000,
-        rebrandedApi: true,
         consoleOnFailover: true,
       })
 

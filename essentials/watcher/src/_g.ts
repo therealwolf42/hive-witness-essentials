@@ -26,7 +26,6 @@ export let config = require('../configs/config.js').get()
 export let client: dhive.Client = new dhive.Client(config.RPC_NODES, {
   timeout: 8 * 1000,
   failoverThreshold: 4,
-  rebrandedApi: true,
   consoleOnFailover: true,
 })
 
