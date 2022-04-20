@@ -14,7 +14,7 @@
   "author": "therealwolf42",
   "license": "MIT",
   "dependencies": {
-    "convict": "^4.3.2",
+    "convict": "^6.2.2",
     "dotenv": "^5.0.0",
     "readline-sync": "^1.4.9",
     "witness-essentials-package": "^3.0.9"
