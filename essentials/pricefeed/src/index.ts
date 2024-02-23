@@ -3,10 +3,9 @@ import * as essentials from 'witness-essentials-package'
 import _g = require('./_g')
 
 import {
-  bittrex_price,
+  binance_price,
+  upbit_price,
   probit_price,
-  huobi_price,
-  bittrex_usd_price,
   kraken_usd_price,
 } from './exchanges'
 import {
@@ -115,12 +114,9 @@ const update_pricefeed = async () => {
   try {
     let promises = []
 
-    if (_g.config.EXCHANGES.bittrex) promises.push(bittrex_price())
     if (_g.config.EXCHANGES.probit) promises.push(probit_price())
-    if (_g.config.EXCHANGES.huobi) promises.push(huobi_price())
-    /* if (_g.config.EXCHANGES.binance) promises.push(binance_price())
-    
-    if (_g.config.EXCHANGES.upbit) promises.push(upbit_price())*/
+    if (_g.config.EXCHANGES.binance) promises.push(binance_price())
+    if (_g.config.EXCHANGES.upbit) promises.push(upbit_price())
 
     const x = await Promise.all(promises)
     const prices = []
@@ -139,7 +135,6 @@ const update_pricefeed = async () => {
 
     if (_g.config.CONVERT_USDT_TO_USD) {
       promises = []
-      if (_g.config.EXCHANGES_USDT.bittrex) promises.push(bittrex_usd_price())
       if (_g.config.EXCHANGES_USDT.kraken) promises.push(kraken_usd_price())
 
       if (promises.length > 0) {
