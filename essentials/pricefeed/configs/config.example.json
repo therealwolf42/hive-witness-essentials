@@ -24,15 +24,12 @@
     }
   ],
   "EXCHANGES": {
-    "bittrex": true,
     "binance": true,
-    "huobi": true,
     "upbit": true,
     "probit": true
   },
   "CONVERT_USDT_TO_USD": true,
   "EXCHANGES_USDT": {
-    "bittrex": true,
     "kraken": true
   },
   "PEG": 1,
