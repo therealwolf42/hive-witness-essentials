@@ -30,7 +30,7 @@ export const binance_price = async () => {
     ).data
     let BTC_HIVE = (
       await httpClient.get(
-        'https://api.binance.com/api/v3/ticker/price?symbol=STEEMBTC',
+        'https://api.binance.com/api/v3/ticker/price?symbol=HIVEBTC',
       )
     ).data
 
@@ -54,7 +54,7 @@ export const upbit_price = async () => {
     ).data[0]
     let BTC_HIVE = (
       await httpClient.get(
-        'https://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/1?code=CRIX.UPBIT.BTC-STEEM',
+        'https://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/1?code=CRIX.UPBIT.BTC-HIVE',
       )
     ).data[0]
 
