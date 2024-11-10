@@ -46,5 +46,4 @@ tsconfig.tsbuildinfo
 # API keys and secrets
 .env
 config.json
-configs/config.json
-configs/config.pricefeed.json
+config/config.json

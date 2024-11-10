@@ -1,54 +1,55 @@
 {
-  "name": "@witness-essentials/root",
-  "private": true,
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "hive-witness-essentials",
+  "version": "2.0.0",
   "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "add:root": "yarn add -W -D",
-    "add:cli": "yarn workspace @witness-essentials/cli add",
-    "add:pricefeed": "yarn workspace @witness-essentials/pricefeed add",
-    "add:remote": "yarn workspace @witness-essentials/remote add",
-    "add:watcher": "yarn workspace @witness-essentials/watcher add",
-    "add:util": "yarn workspace @witness-essentials/package add",
-    "lint": "eslint --ext .ts,.js,.vue . --ignore-path .gitignore .",
-    "update": "yarn run update:cli && yarn run update:pricefeed && yarn run update:remote && yarn run update:watcher",
-    "update:cli": "yarn workspace @witness-essentials/cli add witness-essentials-package@latest",
-    "update:pricefeed": "yarn workspace @witness-essentials/pricefeed add witness-essentials-package@latest",
-    "update:remote": "yarn workspace @witness-essentials/remote add witness-essentials-package@latest",
-    "update:watcher": "yarn workspace @witness-essentials/watcher add witness-essentials-package@latest"
+    "start": "tsx src/index.ts",
+    "remote": "tsx src/index.ts remote",
+    "pricefeed": "tsx src/index.ts pricefeed",
+    "watcher": "tsx src/index.ts watcher",
+    "enable": "tsx src/index.ts cli enable",
+    "update": "tsx src/index.ts cli update",
+    "rotate": "tsx src/index.ts cli rotate",
+    "disable": "tsx src/index.ts cli disable",
+    "test": "tsx src/test.ts"
   },
-  "workspaces": {
-    "packages": [
-      "essentials/*"
-    ],
-    "nohoist": [
-      "*/**",
-      "__internal__Util"
-    ]
+  "engines": {
+    "node": ">=18"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js}": [
-      "yarn lint"
-    ]
+  "dependencies": {
+    "@hiveio/dhive": "^1.3.2",
+    "axios": "^1.7.7",
+    "convict": "^6.2.4",
+    "dayjs": "^1.11.13",
+    "dhive-reloaded": "^1.0.13",
+    "dotenv": "^16.4.5",
+    "nodemailer": "^6.9.16",
+    "p-retry": "^6.2.0",
+    "readline-sync": "^1.4.10",
+    "superagent": "^10.1.1",
+    "telegraf": "^4.16.3",
+    "tslib": "^2.8.1",
+    "twilio": "^5.3.5"
   },
   "devDependencies": {
-    "@types/node": "^12.12.31",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.0.9",
-    "prettier": "^2.0.2",
-    "ts-node": "^8.8.1",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^3.8.3"
+    "@types/convict": "^6.1.6",
+    "@types/node": "^22.9.0",
+    "@types/nodemailer": "^6.4.16",
+    "@types/readline-sync": "^1.4.8",
+    "@types/superagent": "^8.1.9",
+    "@typescript-eslint/eslint-plugin": "^8.13.0",
+    "@typescript-eslint/parser": "^8.13.0",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
   }
 }

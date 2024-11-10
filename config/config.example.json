@@ -1,0 +1,67 @@
+{
+  "TEST_MODE": false,
+  "RPC_NODES": [
+    "https://api.hive.blog",
+    "https://api.deathwing.me",
+    "https://hive-api.arcange.eu",
+    "https://api.openhive.network",
+    "https://techcoderx.com",
+    "https://api.c0ff33a.uk",
+    "https://hive-api.3speak.tv",
+    "https://hiveapi.actifit.io",
+    "https://rpc.mahdiyari.info"
+  ],
+  "WITNESS": "",
+  "ACTIVE_KEY": "",
+  "SIGNING_KEYS": [
+    {
+      "public": "",
+      "private": ""
+    }
+  ],
+  "PRICEFEED": {
+    "ENABLED": true,
+    "PEG": 1,
+    "INTERVAL": 60,
+    "EXCHANGES": {
+      "binance": true,
+      "upbit": true,
+      "probit": true
+    },
+    "CONVERT_USDT_TO_USD": true,
+    "EXCHANGES_USDT": {
+      "kraken": true
+    }
+  },
+  "WATCHER": {
+    "ENABLED": true,
+    "INTERVAL": 1,
+    "MISSED_BLOCKS_THRESHOLD": 2,
+    "ROTATE_KEYS": true,
+    "ROTATE_ROUNDS": 3,
+    "ALERT_AFTER_EVERY_MISSED": true
+  },
+  "REMOTE": {
+    "ENABLED": true
+  },
+  "SMS": {
+    "NEXMO": false,
+    "TWILIO": false,
+    "API_KEY": "",
+    "API_SECRET": "",
+    "PHONE_NUMBER": "",
+    "FROM_NUMBER": "TWILIO ONLY"
+  },
+  "EMAIL": {
+    "ENABLED": false,
+    "GOOGLE_MAIL_ACCOUNT": "",
+    "GOOGLE_MAIL_PASSWORD": "",
+    "EMAIL_RECEIVER": ""
+  },
+  "TELEGRAM": {
+    "ENABLED": false,
+    "BOT_TOKEN": "",
+    "PASSWORD": "",
+    "USER_ID": ""
+  }
+}

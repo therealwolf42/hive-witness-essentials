@@ -17,4 +17,4 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-use-before-define': 0,
   },
-}
+};
