@@ -13,7 +13,7 @@ git clone git@github.com:therealwolf42/hive-witness-essentials.git
 cp config/config.example.json config/config.json
 
 # replace/enter everything besides the RPC nodes as they are up-to-date.
-# make sure the ENABLED flag of the essentials is set to true/false
+# make sure the ENABLED flag of the essentials are set to true/false
 nano config/config.json
 
 # script needs proper rights (optional)
