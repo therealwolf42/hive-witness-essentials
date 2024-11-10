@@ -1,5 +1,4 @@
-# Use node:18-alpine as base
-FROM node:18-alpine
+FROM node:22-alpine
 
 # Set working directory
 ARG ESSENTIALS

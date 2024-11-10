@@ -7,15 +7,15 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsx src/index.ts",
-    "remote": "tsx src/index.ts remote",
-    "pricefeed": "tsx src/index.ts pricefeed",
-    "watcher": "tsx src/index.ts watcher",
-    "enable": "tsx src/index.ts cli enable",
-    "update": "tsx src/index.ts cli update",
-    "rotate": "tsx src/index.ts cli rotate",
-    "disable": "tsx src/index.ts cli disable",
-    "test": "tsx src/test.ts"
+    "start": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts",
+    "remote": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts remote",
+    "pricefeed": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts pricefeed",
+    "watcher": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts watcher",
+    "enable": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts cli enable",
+    "update": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts cli update",
+    "rotate": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts cli rotate",
+    "disable": "NODE_OPTIONS='--no-deprecation' tsx src/index.ts cli disable",
+    "test": "NODE_OPTIONS='--no-deprecation' tsx src/test.ts"
   },
   "engines": {
     "node": ">=18"

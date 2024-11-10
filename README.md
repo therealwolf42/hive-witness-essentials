@@ -22,6 +22,9 @@ chmod +x run.sh
 # if docker not yet installed (optional)
 ./run.sh install_docker
 
+# install dependencies
+sudo apt install jq
+
 # whenver you change the config, you will need to rebuild.
 # afterwards restart and output the logs
 ./run.sh build && ./run.sh restart && ./run.sh logs
