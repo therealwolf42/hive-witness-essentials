@@ -9,27 +9,26 @@ Docker support:
 ```
 git clone git@github.com:therealwolf42/hive-witness-essentials.git
 
-# copy example config
+# Copy example config
 cp config/config.example.json config/config.json
 
-# replace/enter everything besides the RPC nodes as they are up-to-date.
-# make sure the ENABLED flag of the essentials are set to true/false
+# Edit the config file and replace values as needed
+# Ensure each essential's ENABLED flag is set to true/false as desired.
 nano config/config.json
 
-# script needs proper rights (optional)
+# Optional: Ensure script permissions
 chmod +x run.sh
 
-# if docker not yet installed (optional)
+# Optional: Install Docker if not yet installed
 ./run.sh install_docker
 
-# install dependencies
+# Install dependencies
 sudo apt install jq
 
-# whenver you change the config, you will need to rebuild.
-# afterwards restart and output the logs
+# Rebuild whenever you update the config, then restart and view logs
 ./run.sh build && ./run.sh restart && ./run.sh logs
 
-To get a list of possible commands and active essentials, use: ./run.sh help
+To list available commands and check active essentials, use: `./run.sh help`
 ```
 
 Node Only:
