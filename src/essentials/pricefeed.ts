@@ -74,12 +74,13 @@ const updatePricefeed = async (isTesting: boolean, shouldBroadcast: boolean) => 
   try {
     let promises = [];
 
-    if (config.get('PRICEFEED.EXCHANGES.binance') !== false) promises.push(getBinancePrice());
-    if (config.get('PRICEFEED.EXCHANGES.upbit') !== false) promises.push(getUpbitPrice());
-    if (config.get('PRICEFEED.EXCHANGES.mexc') !== false) promises.push(getMexcPrice());
-    if (config.get('PRICEFEED.EXCHANGES.bitmart') !== false) promises.push(getBitmartPrice());
-    if (config.get('PRICEFEED.EXCHANGES.biconomy') !== false) promises.push(getBiconomyPrice());
-    if (config.get('PRICEFEED.EXCHANGES.xt') !== false) promises.push(getXtPrice());
+    const exchanges: any = config.get('PRICEFEED.EXCHANGES');
+    if (exchanges.binance !== false) promises.push(getBinancePrice());
+    if (exchanges.upbit !== false) promises.push(getUpbitPrice());
+    if (exchanges.mexc !== false) promises.push(getMexcPrice());
+    if (exchanges.bitmart !== false) promises.push(getBitmartPrice());
+    if (exchanges.biconomy !== false) promises.push(getBiconomyPrice());
+    if (exchanges.xt !== false) promises.push(getXtPrice());
 
     const x = await Promise.all(promises);
     const prices = [];
@@ -96,10 +97,11 @@ const updatePricefeed = async (isTesting: boolean, shouldBroadcast: boolean) => 
 
     if (config.get('PRICEFEED.CONVERT_USDT_TO_USD')) {
       promises = [];
-      if (config.get('PRICEFEED.EXCHANGES_USDT.kraken') !== false) promises.push(getKrakenUsdPrice());
-      if (config.get('PRICEFEED.EXCHANGES_USDT.binance') !== false) promises.push(getBinanceUsdPrice());
-      if (config.get('PRICEFEED.EXCHANGES_USDT.bitstamp') !== false) promises.push(getBitstampUsdPrice());
-      if (config.get('PRICEFEED.EXCHANGES_USDT.coinbase') !== false) promises.push(getCoinbaseUsdPrice());
+      const usdt_exchanges: any = config.get('PRICEFEED.EXCHANGES_USDT');
+      if (usdt_exchanges.kraken !== false) promises.push(getKrakenUsdPrice());
+      if (usdt_exchanges.binance !== false) promises.push(getBinanceUsdPrice());
+      if (usdt_exchanges.bitstamp !== false) promises.push(getBitstampUsdPrice());
+      if (usdt_exchanges.coinbase !== false) promises.push(getCoinbaseUsdPrice());
 
       if (promises.length > 0) {
         const usd_price = await calculateUsdPrice(await Promise.all(promises));
