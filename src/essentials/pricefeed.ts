@@ -74,9 +74,12 @@ const updatePricefeed = async (isTesting: boolean, shouldBroadcast: boolean) => 
   try {
     let promises = [];
 
-    if (config.get('PRICEFEED.EXCHANGES.probit')) promises.push(getProbitPrice());
-    if (config.get('PRICEFEED.EXCHANGES.binance')) promises.push(getBinancePrice());
-    if (config.get('PRICEFEED.EXCHANGES.upbit')) promises.push(getUpbitPrice());
+    if (config.get('PRICEFEED.EXCHANGES.binance') !== false) promises.push(getBinancePrice());
+    if (config.get('PRICEFEED.EXCHANGES.upbit') !== false) promises.push(getUpbitPrice());
+    if (config.get('PRICEFEED.EXCHANGES.mexc') !== false) promises.push(getMexcPrice());
+    if (config.get('PRICEFEED.EXCHANGES.bitmart') !== false) promises.push(getBitmartPrice());
+    if (config.get('PRICEFEED.EXCHANGES.biconomy') !== false) promises.push(getBiconomyPrice());
+    if (config.get('PRICEFEED.EXCHANGES.xt') !== false) promises.push(getXtPrice());
 
     const x = await Promise.all(promises);
     const prices = [];
@@ -93,7 +96,10 @@ const updatePricefeed = async (isTesting: boolean, shouldBroadcast: boolean) => 
 
     if (config.get('PRICEFEED.CONVERT_USDT_TO_USD')) {
       promises = [];
-      if (config.get('PRICEFEED.EXCHANGES_USDT.kraken')) promises.push(getKrakenUsdPrice());
+      if (config.get('PRICEFEED.EXCHANGES_USDT.kraken') !== false) promises.push(getKrakenUsdPrice());
+      if (config.get('PRICEFEED.EXCHANGES_USDT.binance') !== false) promises.push(getBinanceUsdPrice());
+      if (config.get('PRICEFEED.EXCHANGES_USDT.bitstamp') !== false) promises.push(getBitstampUsdPrice());
+      if (config.get('PRICEFEED.EXCHANGES_USDT.coinbase') !== false) promises.push(getCoinbaseUsdPrice());
 
       if (promises.length > 0) {
         const usd_price = await calculateUsdPrice(await Promise.all(promises));
@@ -133,27 +139,10 @@ const handleExchangeError = (exchange: string, error: any): ExchangeResponse => 
 
 /// EXCHANGES
 
-const getProbitPrice = async (): Promise<number> => {
-  try {
-    const { data } = await httpClient.get('https://api.probit.com/api/exchange/v1/ticker?market_ids=HIVE-USDT');
-    const price = Number(data.data[0].last);
-    logLines += `ProBit: ${price.toFixed(3)}$, `;
-    return price;
-  } catch (error) {
-    return handleExchangeError('probit', error).price;
-  }
-};
-
 const getBinancePrice = async (): Promise<number> => {
   try {
-    const [btcUsdResponse, btcHiveResponse] = await Promise.all([
-      httpClient.get('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'),
-      httpClient.get('https://api.binance.com/api/v3/ticker/price?symbol=HIVEBTC'),
-    ]);
-
-    const btcUsdPrice = Number(btcUsdResponse.data.price);
-    const btcHivePrice = Number(btcHiveResponse.data.price);
-    const price = btcHivePrice * btcUsdPrice;
+    const { data } = await httpClient.get('https://api.binance.com/api/v3/ticker/price?symbol=HIVEUSDT');
+    const price = Number(data.price);
 
     logLines += `Binance: ${price.toFixed(3)}$, `;
     return price;
@@ -180,6 +169,55 @@ const getUpbitPrice = async (): Promise<number> => {
   }
 };
 
+const getMexcPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://api.mexc.com/api/v3/ticker/price?symbol=HIVEUSDT');
+    const price = Number(data.price);
+
+    logLines += `MEXC: ${price.toFixed(3)}$, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('mexc', error).price;
+  }
+};
+
+const getBitmartPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://api-cloud.bitmart.com/spot/quotation/v3/ticker?symbol=HIVE_USDT');
+    const price = Number(data.data.last);
+
+    logLines += `BitMart: ${price.toFixed(3)}$, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('bitmart', error).price;
+  }
+};
+
+const getBiconomyPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://www.biconomy.com/api/v1/tickers');
+    const ticker = data.ticker.find((t: any) => t.symbol === 'HIVE_USDT');
+    const price = Number(ticker.last);
+
+    logLines += `Biconomy: ${price.toFixed(3)}$, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('biconomy', error).price;
+  }
+};
+
+const getXtPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://sapi.xt.com/v4/public/ticker/price?symbol=hive_usdt');
+    const price = Number(data.result[0].p);
+
+    logLines += `XT: ${price.toFixed(3)}$, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('xt', error).price;
+  }
+};
+
 const getKrakenUsdPrice = async (): Promise<number> => {
   try {
     const { data } = await httpClient.get('https://api.kraken.com/0/public/Ticker?pair=USDTUSD');
@@ -189,6 +227,42 @@ const getKrakenUsdPrice = async (): Promise<number> => {
     return price;
   } catch (error) {
     return handleExchangeError('kraken_usd', error).price;
+  }
+};
+
+const getBinanceUsdPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://api.binance.com/api/v3/ticker/price?symbol=USDTUSD');
+    const price = Number(data.price);
+
+    usdLines += `Binance: ${price.toFixed(3)}, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('binance_usd', error).price;
+  }
+};
+
+const getBitstampUsdPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://www.bitstamp.net/api/v2/ticker/usdtusd/');
+    const price = Number(data.last);
+
+    usdLines += `Bitstamp: ${price.toFixed(3)}, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('bitstamp_usd', error).price;
+  }
+};
+
+const getCoinbaseUsdPrice = async (): Promise<number> => {
+  try {
+    const { data } = await httpClient.get('https://api.coinbase.com/v2/prices/USDT-USD/spot');
+    const price = Number(data.data.amount);
+
+    usdLines += `Coinbase: ${price.toFixed(3)}, `;
+    return price;
+  } catch (error) {
+    return handleExchangeError('coinbase_usd', error).price;
   }
 };
 

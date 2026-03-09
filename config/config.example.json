@@ -26,11 +26,17 @@
     "EXCHANGES": {
       "binance": true,
       "upbit": true,
-      "probit": true
+      "mexc": true,
+      "bitmart": true,
+      "biconomy": true,
+      "xt": true
     },
     "CONVERT_USDT_TO_USD": true,
     "EXCHANGES_USDT": {
-      "kraken": true
+      "kraken": true,
+      "binance": true,
+      "bitstamp": true,
+      "coinbase": true
     }
   },
   "WATCHER": {

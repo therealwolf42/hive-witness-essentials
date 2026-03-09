@@ -14,11 +14,17 @@ interface ConfigSchema {
     EXCHANGES: {
       binance: boolean;
       upbit: boolean;
-      probit: boolean;
+      mexc: boolean;
+      bitmart: boolean;
+      biconomy: boolean;
+      xt: boolean;
     };
     CONVERT_USDT_TO_USD: boolean;
     EXCHANGES_USDT: {
       kraken: boolean;
+      binance: boolean;
+      bitstamp: boolean;
+      coinbase: boolean;
     };
   };
   WATCHER: {
@@ -94,11 +100,17 @@ const configSchema: Schema<ConfigSchema> = {
       EXCHANGES: {
         binance: true,
         upbit: true,
-        probit: true,
+        mexc: true,
+        bitmart: true,
+        biconomy: true,
+        xt: true,
       },
       CONVERT_USDT_TO_USD: true,
       EXCHANGES_USDT: {
         kraken: true,
+        binance: true,
+        bitstamp: true,
+        coinbase: true,
       },
     },
   },
